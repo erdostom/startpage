@@ -35,7 +35,10 @@ function App() {
     makeCall()
   }, []) 
 
-  console.log({prices})
+  const d1 = new Date()
+  const d2 = new Date(2069,5,3)
+  const left = Math.round((d2 - d1) / (7*24*60*60*1000))
+  const optimist = 4250
   return (
     <div style={styles.container}>
       <div style={styles.bg(bgImageUrl)}>
@@ -45,7 +48,7 @@ function App() {
           </span>
         </div>
         <div style={{...styles.section, ...styles.croakSection}}>
-          <Boxes total={4000} used={1800} />
+          <Boxes total={optimist} used={optimist-left} />
         </div>
         <PriceSection prices={prices} />
       </div>
@@ -124,7 +127,6 @@ const Box = ({filled=false}) => {
 }
 
 const Boxes = ({used, total}) => {
-  console.log({used})
   const boxes = []
   let i
   for (i=0;  i < Number(used); i++) {
